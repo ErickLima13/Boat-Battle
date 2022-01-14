@@ -21,15 +21,14 @@ public class Chaser : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out ControlMovement controlmovement))
+        if (collision.gameObject.TryGetComponent(out PlayerController playerController))
         {
             enemyAnim.SetInteger("Transition", 1);
-            gameManager.GetComponent<GameManager>().lives--;
+            GetComponent<Status>().TakeDamage(1);
+            collision.gameObject.GetComponent<Status>().TakeDamage(1);
             GetComponent<Movement>().speed = 0;
-            Destroy(this.gameObject, 1f);
-            print("Inimigo explodiu");
+            Destroy(gameObject, 1f);          
         }
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -37,10 +36,11 @@ public class Chaser : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out CannonBall cannonBall))
         {
             enemyAnim.SetInteger("Transition", 1);
+            GetComponent<Status>().TakeDamage(1);
+            Destroy(cannonBall.gameObject);
             Destroy(this.gameObject, 1f);
-            gameManager.GetComponent<GameManager>().score++;
-            GetComponent<Movement>().speed = 0;
-            print("destruiu inimigo");
+            GameManager.instance.UpdateScore(1);
+            GetComponent<Movement>().speed = 0;            
         }
     }
 }

@@ -5,10 +5,10 @@ using UnityEngine;
 public class CannonBall : MonoBehaviour
 {
     public float speed;
-
+   
     public void Initialization()
     {
-        Destroy(gameObject, 2f);
+        Destroy(gameObject, 1.5f);
     }
 
     void Start()
@@ -24,11 +24,15 @@ public class CannonBall : MonoBehaviour
 
     private void ShootBall()
     {
-        transform.Translate(Vector2.down * speed * Time.deltaTime);
+        transform.Translate(Vector2.down * speed * Time.deltaTime);        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject);
+        if (collision.gameObject.TryGetComponent(out PlayerController playerController))
+        {
+            Destroy(gameObject);           
+        }
     }
+
 }

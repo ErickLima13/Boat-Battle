@@ -9,10 +9,21 @@ public class Movement : MonoBehaviour
     public Vector3 direction;
     public float speed;
     public int distance;
+    public float distancePlayer;
+
+    public Transform[] PatrolTargets;
+    public float waitTime;
+    
+
+    private int random;
+    private float time;
+
 
     public void Initialization()
     {
         player = GameObject.Find("Player").transform;
+        
+        random = Random.Range(0, PatrolTargets.Length);
     }
         
     void Start()
@@ -20,24 +31,46 @@ public class Movement : MonoBehaviour
         Initialization();   
     }
     
-    void LateUpdate()
+    void Update()
     {
         CalculateDistance();
+        
     }
 
     private void CalculateDistance()
-    {
-        direction = player.position - transform.position;        
-        Debug.DrawRay(transform.position, direction, Color.blue);             
+    {      
+        distancePlayer = Vector2.Distance(transform.position, player.position);
 
-        if(direction.magnitude > distance)
+        if(distancePlayer > distance)
         {
-            transform.Translate(direction * Time.deltaTime * speed);
+            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
         }
 
+
+        //controla a rotação
+        direction = player.position - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90;
-        
         Quaternion rotation = transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * speed);        
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * speed);
     }    
+
+    private void Patrol()
+    {
+        transform.position = Vector2.MoveTowards(transform.position, PatrolTargets[random].position, speed * Time.deltaTime);
+
+        float distance = Vector2.Distance(transform.position, PatrolTargets[random].position);
+
+        if(distance <= .2f)
+        {
+            if(time <= 0)
+            {
+                random = Random.Range(0, PatrolTargets.Length);
+                time = waitTime;
+            }
+            else
+            {
+                time -= Time.deltaTime;
+            }
+        }
+    }
 }

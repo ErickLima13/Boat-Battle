@@ -6,9 +6,7 @@ public class Shooter : MonoBehaviour
 {
     public GameObject firePoint;
     public GameObject bulletPrefab;
-    public GameObject fireEffects;
-
-    public int lives;
+    public GameObject fireEffects;    
 
     public float fireRate;
     private float nextShot;
@@ -16,6 +14,8 @@ public class Shooter : MonoBehaviour
     private Animator enemyAnim;
     private GameObject gameManager;
 
+    [SerializeField] private Status status;
+    [SerializeField] private Movement movement;
 
     public void Initialization()
     {
@@ -28,18 +28,21 @@ public class Shooter : MonoBehaviour
         Initialization();
     }
 
-    void LateUpdate()
+    void Update()
     {
-        if(lives != 0)
+        if(GetComponent<Status>().currentHealth != 0)
         {
           ShootingTime();
-        }              
-        DamageControl();
+        }
+        else
+        {
+            DestroyBoat();
+        }                    
     }
 
     void ShootingTime()
     {
-        if (Time.time >= nextShot && GetComponent<Movement>().direction.magnitude < GetComponent<Movement>().distance)
+        if (Time.time >= nextShot && movement.distancePlayer < movement.distance)
         {                    
           nextShot = Time.time + 1f / fireRate;
           Shoot();
@@ -52,40 +55,38 @@ public class Shooter : MonoBehaviour
     }
 
     public void DestroyBoat()
-    {
-        gameManager.GetComponent<GameManager>().score++;
+    {        
         GetComponent<Movement>().speed = 0;
         Destroy(gameObject, 1f);
-        fireEffects.SetActive(false);
-        print("ponto");
+        fireEffects.SetActive(false);        
     }
 
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent(out CannonBall cannonBall))
-        {            
-            lives--;                      
+        {
+            GetComponent<Status>().TakeDamage(1);
+            Destroy(cannonBall.gameObject);
+            DamageControl();
         }
     }
 
     private void DamageControl()
     {
-        if (lives == 2)
+        switch (status.currentHealth)
         {
-            enemyAnim.SetInteger("Transition", 1);
-        }
-
-        if (lives == 1)
-        {
-            enemyAnim.SetInteger("Transition", 2);
-            fireEffects.SetActive(true);
-        }
-
-        if (lives == 0)
-        {
-            enemyAnim.SetInteger("Transition", 3);
-            DestroyBoat();
-        }
+            case 2:
+                enemyAnim.SetInteger("Transition", 1);
+                break;
+            case 1:
+                enemyAnim.SetInteger("Transition", 2);
+                fireEffects.SetActive(true);
+                break;
+            case 0:
+                enemyAnim.SetInteger("Transition", 3);
+                GameManager.instance.UpdateScore(1);
+                break;
+        }     
     }
 }
