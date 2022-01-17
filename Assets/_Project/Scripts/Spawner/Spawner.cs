@@ -5,11 +5,11 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public List<GameObject> enemiesPrefabs;
+    public List<Transform> spawnPoints;
     public float spawnRate;
 
     private float nextSpawn = 0f;
-    private float xRange = 22;
-    private float ySpawnPos = 6;
+    
 
     private void Initialization()
     {
@@ -25,8 +25,7 @@ public class Spawner : MonoBehaviour
     void Update()
     {
         if (GameManager.instance.isGameActive)
-        {
-            
+        {            
             SpawnEnemies();
         }
         
@@ -38,13 +37,10 @@ public class Spawner : MonoBehaviour
         {
             nextSpawn = Time.time + spawnRate;
             int index = Random.Range(0, enemiesPrefabs.Count);
-            Instantiate(enemiesPrefabs[index],transform.position = RandomSpawnPos(),enemiesPrefabs[index].transform.rotation);
+            int indexSpawnPoints = Random.Range(0, spawnPoints.Count);
+            Instantiate(enemiesPrefabs[index],spawnPoints[indexSpawnPoints].transform.position ,enemiesPrefabs[index].transform.rotation);
         }
     }
 
-    Vector3 RandomSpawnPos()
-    {
-        return new Vector3(Random.Range(-xRange, xRange), Random.Range(-ySpawnPos, ySpawnPos));
-
-    }
+    
 }

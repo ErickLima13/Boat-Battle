@@ -5,22 +5,22 @@ using UnityEngine;
 public class Shooter : MonoBehaviour
 {
     public GameObject firePoint;
-    public GameObject bulletPrefab;
+    public GameObject ballPrefab;
     public GameObject fireEffects;    
 
     public float fireRate;
     private float nextShot;
 
-    private Animator enemyAnim;
-    private GameObject gameManager;
+    private Animator enemyAnim;   
 
     [SerializeField] private Status status;
     [SerializeField] private Movement movement;
 
+    public bool isThePlayer;
+
     public void Initialization()
     {
-        enemyAnim = GetComponent<Animator>();
-        gameManager = GameObject.Find("Game Manager");
+        enemyAnim = GetComponent<Animator>();        
     }
 
     private void Start()
@@ -36,7 +36,7 @@ public class Shooter : MonoBehaviour
         }
         else
         {
-            DestroyBoat();
+          DestroyBoat();
         }                    
     }
 
@@ -51,7 +51,7 @@ public class Shooter : MonoBehaviour
 
     void Shoot()
     {
-        Instantiate(bulletPrefab, firePoint.transform.position, firePoint.transform.rotation);
+        Instantiate(ballPrefab, firePoint.transform.position, firePoint.transform.rotation);
     }
 
     public void DestroyBoat()
@@ -66,11 +66,18 @@ public class Shooter : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out CannonBall cannonBall))
         {
-            GetComponent<Status>().TakeDamage(1);
-            Destroy(cannonBall.gameObject);
             DamageControl();
+            Destroy(cannonBall.gameObject);            
+        }
+
+        if(collision.gameObject.TryGetComponent(out TripleBall tripleBall))
+        {
+            DamageControl();
+            Destroy(tripleBall.gameObject);
         }
     }
+
+    
 
     private void DamageControl()
     {

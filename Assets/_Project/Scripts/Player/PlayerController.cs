@@ -9,20 +9,19 @@ public class PlayerController : MonoBehaviour
 
 
     public GameObject firePoint;
-    public GameObject bulletPrefab;
+    public GameObject ballPrefab;
+    public GameObject tripleBallPrefab;
     public GameObject fireEffects;
     public GameObject tripleEffects;
 
     public List<GameObject> triplePoints;
 
     public float fireRate;
-    private float nextShot;
-
+    public float coolDown;
+    public float nextShot;
 
     [SerializeField] private Animator playerAnim;
-    [SerializeField] private Status status;
-
-   
+    [SerializeField] private Status status;  
 
 
     public void Initialization()
@@ -33,8 +32,7 @@ public class PlayerController : MonoBehaviour
     
     void Start()
     {
-        Initialization();
-        
+        Initialization();        
     }
 
     void Update()
@@ -47,7 +45,6 @@ public class PlayerController : MonoBehaviour
             ShootingTime();
             DamageControl();
         }       
-
     }
 
     private void Movement()
@@ -80,19 +77,31 @@ public class PlayerController : MonoBehaviour
 
             if(Input.GetButtonDown("Fire2"))
             {
-
+                StartCoroutine(AttackSpecial());
+                nextShot = Time.time + 1f / coolDown;
             }
         }
     }
 
     void Shoot()
     {
-        Instantiate(bulletPrefab, firePoint.transform.position, firePoint.transform.rotation);
+        Instantiate(ballPrefab, firePoint.transform.position, firePoint.transform.rotation);
+    }
+
+    IEnumerator AttackSpecial()
+    {
+        TripleShoot();
+        yield return new WaitForSeconds(5.5f);        
+        tripleEffects.SetActive(false);
+        //StopAllCoroutines();
     }
 
     void TripleShoot()
     {
-        
+        tripleEffects.SetActive(true);
+        Instantiate(tripleBallPrefab, triplePoints[0].transform.position, triplePoints[0].transform.rotation);
+        Instantiate(tripleBallPrefab, triplePoints[1].transform.position, triplePoints[1].transform.rotation);
+        Instantiate(tripleBallPrefab, triplePoints[2].transform.position, triplePoints[2].transform.rotation);      
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

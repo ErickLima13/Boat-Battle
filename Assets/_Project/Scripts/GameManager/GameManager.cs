@@ -137,8 +137,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         isGameActive = false;
-        onGameOver?.Invoke();
-        
+        onGameOver?.Invoke();        
     }
 
     public void StartGame()

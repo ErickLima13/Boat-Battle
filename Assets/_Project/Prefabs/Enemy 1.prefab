@@ -437,6 +437,7 @@ GameObject:
   - component: {fileID: 6104950284754122605}
   - component: {fileID: 6104950284754122607}
   - component: {fileID: 8605229429880121792}
+  - component: {fileID: -209388857286623899}
   m_Layer: 0
   m_Name: Enemy 1
   m_TagString: Untagged
@@ -529,13 +530,10 @@ MonoBehaviour:
   speed: 2
   distance: 5
   distancePlayer: 0
-  PatrolTargets:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  PatrolTarget: {fileID: 4096196421895653125, guid: 1d8933d6cec2ca14ca76e1dc1c480122, type: 3}
   waitTime: 2
+  xRange: 23
+  yRange: 6
 --- !u!70 &6104950284754122604
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -565,11 +563,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 6104950283771040948}
-  bulletPrefab: {fileID: 2683546297397998248, guid: 05168e7b75e886a4a8738fca5e3eb8c8, type: 3}
+  ballPrefab: {fileID: 2683546297397998248, guid: 05168e7b75e886a4a8738fca5e3eb8c8, type: 3}
   fireEffects: {fileID: 6104950283797211520}
   fireRate: 0.5
   status: {fileID: 8605229429880121792}
   movement: {fileID: 6104950284754122600}
+  isThePlayer: 0
 --- !u!95 &6104950284754122607
 Animator:
   serializedVersion: 3
@@ -605,6 +604,27 @@ MonoBehaviour:
   currentHealth: 0
   healthBar: {fileID: 1137549720}
   healthBarObject: {fileID: 282546468}
+--- !u!50 &-209388857286623899
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6104950284754122601}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &6104950285145291937
 GameObject:
   m_ObjectHideFlags: 0

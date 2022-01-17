@@ -16,8 +16,7 @@ public class Chaser : MonoBehaviour
     void Start()
     {
         Initialization();
-    }
-           
+    }           
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -35,12 +34,20 @@ public class Chaser : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out CannonBall cannonBall))
         {
-            enemyAnim.SetInteger("Transition", 1);
-            GetComponent<Status>().TakeDamage(1);
+            enemyAnim.SetInteger("Transition", 1);            
             Destroy(cannonBall.gameObject);
             Destroy(this.gameObject, 1f);
             GameManager.instance.UpdateScore(1);
             GetComponent<Movement>().speed = 0;            
+        }
+
+        if(collision.gameObject.TryGetComponent(out TripleBall tripleBall))
+        {
+            enemyAnim.SetInteger("Transition", 1);
+            Destroy(tripleBall.gameObject);
+            Destroy(this.gameObject, 1f);
+            GameManager.instance.UpdateScore(1);
+            GetComponent<Movement>().speed = 0;
         }
     }
 }

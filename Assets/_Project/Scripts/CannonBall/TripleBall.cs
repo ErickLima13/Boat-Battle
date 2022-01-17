@@ -2,42 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CannonBall : MonoBehaviour
+public class TripleBall : MonoBehaviour
 {
     public float speed;
-   
-    public void Initialization()
-    {
-        Destroy(gameObject, 1.5f);
-    }
 
+    // Start is called before the first frame update
     void Start()
     {
-        Initialization();        
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        ShootBall();
+        Shoot();
     }
 
-    private void ShootBall()
+    private void Shoot()
     {
-        transform.Translate(Vector2.down * speed * Time.deltaTime);        
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out PlayerController playerController))
-        {
-            Destroy(gameObject);           
-        }
-
         if(collision.gameObject.TryGetComponent(out Movement movement))
         {
             collision.GetComponent<Status>().TakeDamage(1);
+            
         }
     }
-
 }
