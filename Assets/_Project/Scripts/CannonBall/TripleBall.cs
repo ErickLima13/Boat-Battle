@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class TripleBall : MonoBehaviour
 {
-    public float speed;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float speed;   
 
     // Update is called once per frame
     void Update()
@@ -28,7 +22,7 @@ public class TripleBall : MonoBehaviour
         if(collision.gameObject.TryGetComponent(out Movement movement))
         {
             collision.GetComponent<Status>().TakeDamage(1);
-            
+            Destroy(gameObject);
         }
     }
 }

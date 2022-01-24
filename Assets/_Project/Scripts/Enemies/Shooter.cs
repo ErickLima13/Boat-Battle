@@ -11,16 +11,16 @@ public class Shooter : MonoBehaviour
     public float fireRate;
     private float nextShot;
 
-    private Animator enemyAnim;   
+    public List<AudioClip> sfxSounds;
 
+    [SerializeField] private Animator enemyAnimator;
+    [SerializeField] private AudioSource audioSource;
     [SerializeField] private Status status;
-    [SerializeField] private Movement movement;
-
-    public bool isThePlayer;
+    [SerializeField] private Movement movement;    
 
     public void Initialization()
     {
-        enemyAnim = GetComponent<Animator>();        
+        enemyAnimator = GetComponent<Animator>();        
     }
 
     private void Start()
@@ -42,7 +42,7 @@ public class Shooter : MonoBehaviour
 
     void ShootingTime()
     {
-        if (Time.time >= nextShot && movement.distancePlayer < movement.distance)
+        if (Time.time >= nextShot && movement.distancePlayer < movement.distanceToAttack && GameManager.instance.isGameActive)
         {                    
           nextShot = Time.time + 1f / fireRate;
           Shoot();
@@ -51,13 +51,14 @@ public class Shooter : MonoBehaviour
 
     void Shoot()
     {
+        audioSource.PlayOneShot(sfxSounds[0],0.2f);
         Instantiate(ballPrefab, firePoint.transform.position, firePoint.transform.rotation);
     }
 
     public void DestroyBoat()
     {        
         GetComponent<Movement>().speed = 0;
-        Destroy(gameObject, 1f);
+        Destroy(gameObject, 2f);
         fireEffects.SetActive(false);        
     }
 
@@ -75,23 +76,22 @@ public class Shooter : MonoBehaviour
             DamageControl();
             Destroy(tripleBall.gameObject);
         }
-    }
-
-    
+    }    
 
     private void DamageControl()
     {
         switch (status.currentHealth)
         {
             case 2:
-                enemyAnim.SetInteger("Transition", 1);
+                enemyAnimator.SetInteger("Transition", 1);
                 break;
             case 1:
-                enemyAnim.SetInteger("Transition", 2);
+                enemyAnimator.SetInteger("Transition", 2);
                 fireEffects.SetActive(true);
                 break;
             case 0:
-                enemyAnim.SetInteger("Transition", 3);
+                audioSource.PlayOneShot(sfxSounds[1], 0.2f);
+                enemyAnimator.SetInteger("Transition", 3);
                 GameManager.instance.UpdateScore(1);
                 break;
         }     

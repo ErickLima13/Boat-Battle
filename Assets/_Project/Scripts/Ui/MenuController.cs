@@ -10,8 +10,7 @@ public class MenuController : MonoBehaviour
     public void PlayAgain()
     {
         GameManager.instance.PlayGame();
-        GameManager.instance.score = 0;
-        
+        GameManager.instance.score = 0;        
     }
 
     public void MainMenu()

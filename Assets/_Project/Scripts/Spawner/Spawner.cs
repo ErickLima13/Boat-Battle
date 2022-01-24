@@ -8,8 +8,7 @@ public class Spawner : MonoBehaviour
     public List<Transform> spawnPoints;
     public float spawnRate;
 
-    private float nextSpawn = 0f;
-    
+    private float nextSpawn = 0f;    
 
     private void Initialization()
     {
@@ -27,8 +26,7 @@ public class Spawner : MonoBehaviour
         if (GameManager.instance.isGameActive)
         {            
             SpawnEnemies();
-        }
-        
+        }        
     }
 
     private void SpawnEnemies()

@@ -10,11 +10,12 @@ public class Movement : MonoBehaviour
 
     public float speed;
     public float distancePlayer;
-    public int distance;     
+
+    public int distanceToAttack;   
     
     public void Initialization()
     {
-        player = GameObject.Find("Player").transform;       
+        player = GameObject.Find("Player").transform;      
     }
         
     void Start()
@@ -24,20 +25,21 @@ public class Movement : MonoBehaviour
     
     void Update()
     {
-        FindThePlayer();
-        RotateTheEnemy();
-        
+        if (GameManager.instance.isGameActive)
+        {
+            FindThePlayer();
+            RotateTheEnemy();
+        }                
     }
 
     private void FindThePlayer()
     {      
-        distancePlayer = Vector2.Distance(transform.position, player.position);
+        distancePlayer = Vector2.Distance(transform.position, player.position);      
 
-        if(distancePlayer > distance)
+        if(distancePlayer > distanceToAttack)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-        }       
-
+        }        
     }    
 
     private void RotateTheEnemy()
@@ -46,11 +48,5 @@ public class Movement : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90;
         Quaternion rotation = transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * speed);
-    }
-
-    private void Patrol()
-    {
-        
-
-    }
+    }    
 }

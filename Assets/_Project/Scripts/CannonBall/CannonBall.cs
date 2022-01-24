@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class CannonBall : MonoBehaviour
 {
-    public float speed;
-   
+    public float speed;        
     public void Initialization()
     {
+        
         Destroy(gameObject, 1.5f);
     }
 
@@ -31,12 +31,15 @@ public class CannonBall : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out PlayerController playerController))
         {
-            Destroy(gameObject);           
+            Destroy(gameObject);
+            collision.GetComponent<Status>().TakeDamage(1);
+
         }
 
         if(collision.gameObject.TryGetComponent(out Movement movement))
         {
             collision.GetComponent<Status>().TakeDamage(1);
+            Destroy(gameObject);
         }
     }
 

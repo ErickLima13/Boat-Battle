@@ -7,12 +7,12 @@ using UnityEngine.UI;
 public class UiController : MonoBehaviour
 {
     public TextMeshProUGUI scoreDisplay;
+    public TextMeshProUGUI scoreDisplayFinal;
     public TextMeshProUGUI timeDisplay;
 
     public GameObject gameOverPanel;
-    public GameObject startDisplay;
-
-    
+    public GameObject pausePanel;
+    public GameObject startDisplay;  
 
     private void Initialization()
     {
@@ -31,6 +31,7 @@ public class UiController : MonoBehaviour
         Started();
         ScoreUpdate();
         GameTime();
+        PauseGame();
     }
 
     private void Started()
@@ -38,8 +39,7 @@ public class UiController : MonoBehaviour
         if (GameManager.instance.isGameActive)
         {
             startDisplay.SetActive(false);
-        }
-        
+        }        
     }
 
     private void ScoreUpdate()
@@ -55,10 +55,34 @@ public class UiController : MonoBehaviour
     private void GameOver()
     {
         gameOverPanel.SetActive(true);
+        scoreDisplayFinal.text = "Your Score:" + GameManager.instance.score.ToString();
+        
     }
 
     private void OnDisable()
     {
         GameManager.instance.onGameOver -= GameOver;
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
+    public void PauseGame()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (pausePanel.activeSelf)
+            {
+                pausePanel.SetActive(false);
+                Time.timeScale = 1;
+            }
+            else
+            {
+                pausePanel.SetActive(true);
+                Time.timeScale = 0;
+            }
+        }
     }
 }

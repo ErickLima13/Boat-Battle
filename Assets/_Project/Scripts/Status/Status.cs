@@ -12,8 +12,6 @@ public class Status : MonoBehaviour
 
     private Vector3 healthBarScale;
     private float healthPercent;
-
-
     public void Initialization()
     {
         currentHealth = maxHealth;

@@ -4,29 +4,22 @@ using UnityEngine;
 
 public class Chaser : MonoBehaviour
 {
-    private Animator enemyAnim;
-    private GameObject gameManager;
-    
-    public void Initialization()
-    {
-        enemyAnim = GetComponent<Animator>();
-        gameManager = GameObject.Find("Game Manager");
-    }
-    
-    void Start()
-    {
-        Initialization();
-    }           
-    
+    [SerializeField] private Animator enemyAnimator;
+
+    [SerializeField] private AudioSource audioSource;
+
+    public AudioClip destroyedSound;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.TryGetComponent(out PlayerController playerController))
         {
-            enemyAnim.SetInteger("Transition", 1);
+            audioSource.PlayOneShot(destroyedSound, 0.2f);
+            enemyAnimator.SetInteger("Transition", 1);
             GetComponent<Status>().TakeDamage(1);
             collision.gameObject.GetComponent<Status>().TakeDamage(1);
             GetComponent<Movement>().speed = 0;
-            Destroy(gameObject, 1f);          
+            Destroy(gameObject, 2f);
         }
     }
 
@@ -34,20 +27,23 @@ public class Chaser : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out CannonBall cannonBall))
         {
-            enemyAnim.SetInteger("Transition", 1);            
+            audioSource.PlayOneShot(destroyedSound, 0.2f);
+            enemyAnimator.SetInteger("Transition", 1);
             Destroy(cannonBall.gameObject);
-            Destroy(this.gameObject, 1f);
+            Destroy(this.gameObject, 2f);
             GameManager.instance.UpdateScore(1);
-            GetComponent<Movement>().speed = 0;            
+            GetComponent<Movement>().speed = 0;
         }
 
-        if(collision.gameObject.TryGetComponent(out TripleBall tripleBall))
+        if (collision.gameObject.TryGetComponent(out TripleBall tripleBall))
         {
-            enemyAnim.SetInteger("Transition", 1);
+            audioSource.PlayOneShot(destroyedSound, 0.2f);
+            enemyAnimator.SetInteger("Transition", 1);
             Destroy(tripleBall.gameObject);
-            Destroy(this.gameObject, 1f);
+            Destroy(this.gameObject, 2f);
             GameManager.instance.UpdateScore(1);
             GetComponent<Movement>().speed = 0;
         }
     }
 }
+

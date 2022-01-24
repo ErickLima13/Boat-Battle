@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public bool isGameActive;
     
     public int score = 0;
+
     public float time;
     public float spawnRate = 3;
 
@@ -55,10 +56,8 @@ public class GameManager : MonoBehaviour
     public void Initialization()
     {
         DontDestroyOnLoad(gameObject);
-        instance = this;
-        SetGameTime();
-        SetSpawnTime();
-        
+        instance = this;        
+        SetSpawnTime();        
     }
 
     // Start is called before the first frame update
@@ -69,11 +68,7 @@ public class GameManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if (time == 0)
-        {
-            isGameActive = false;
-        }
+    {       
 
         if (isGameActive)
         {
@@ -86,7 +81,6 @@ public class GameManager : MonoBehaviour
             menuPanel = null;        
         }      
     }
-
 
     public void PlayGame()
     {
@@ -107,8 +101,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateScore(int scoreToAdd)
     {
-        score += scoreToAdd;
-        print("Ponto");
+        score += scoreToAdd;        
     }
 
     public void SetGameTime()
@@ -124,11 +117,10 @@ public class GameManager : MonoBehaviour
             case 2:
                 multiplier = 3;
                 break;
-        }
-
-        time -= Time.deltaTime;        
-
-        if(time == 0)
+        }        
+        time -= Time.deltaTime;    
+        
+        if(time <= 0)
         {
             GameOver();
         }
