@@ -36,7 +36,7 @@ public class CannonBall : MonoBehaviour
 
         }
 
-        if(collision.gameObject.TryGetComponent(out Movement movement))
+        if(collision.gameObject.TryGetComponent(out Patrol patrol))
         {
             collision.GetComponent<Status>().TakeDamage(1);
             Destroy(gameObject);

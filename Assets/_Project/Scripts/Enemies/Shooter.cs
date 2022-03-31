@@ -6,7 +6,7 @@ public class Shooter : MonoBehaviour
 {
     public GameObject firePoint;
     public GameObject ballPrefab;
-    public GameObject fireEffects;    
+    public GameObject fireEffects;
 
     public float fireRate;
     private float nextShot;
@@ -16,11 +16,11 @@ public class Shooter : MonoBehaviour
     [SerializeField] private Animator enemyAnimator;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private Status status;
-    [SerializeField] private Movement movement;    
+    [SerializeField] private Patrol patrol;
 
     public void Initialization()
     {
-        enemyAnimator = GetComponent<Animator>();        
+        enemyAnimator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -30,53 +30,52 @@ public class Shooter : MonoBehaviour
 
     void Update()
     {
-        if(GetComponent<Status>().currentHealth != 0)
+        if (GetComponent<Status>().currentHealth != 0)
         {
-          ShootingTime();
+            ShootingTime();
         }
         else
         {
-          DestroyBoat();
-        }                    
+            DestroyBoat();
+        }
     }
 
     void ShootingTime()
     {
-        if (Time.time >= nextShot && movement.distancePlayer < movement.distanceToAttack && GameManager.instance.isGameActive)
-        {                    
-          nextShot = Time.time + 1f / fireRate;
-          Shoot();
+        if (Time.time >= nextShot && patrol.isPlayer && GameManager.instance.isGameActive)
+        {
+            nextShot = Time.time + 1f / fireRate;
+            Shoot();
         }
     }
 
     void Shoot()
     {
-        audioSource.PlayOneShot(sfxSounds[0],0.2f);
+        audioSource.PlayOneShot(sfxSounds[0], 0.2f);
         Instantiate(ballPrefab, firePoint.transform.position, firePoint.transform.rotation);
     }
 
     public void DestroyBoat()
-    {        
-        GetComponent<Movement>().speed = 0;
-        Destroy(gameObject, 2f);
-        fireEffects.SetActive(false);        
+    {
+        patrol.speed = 0;
+        Destroy(gameObject, 0.5f);
+        fireEffects.SetActive(false);
     }
 
-    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent(out CannonBall cannonBall))
         {
             DamageControl();
-            Destroy(cannonBall.gameObject);            
+            Destroy(cannonBall.gameObject);
         }
 
-        if(collision.gameObject.TryGetComponent(out TripleBall tripleBall))
+        if (collision.gameObject.TryGetComponent(out TripleBall tripleBall))
         {
             DamageControl();
             Destroy(tripleBall.gameObject);
         }
-    }    
+    }
 
     private void DamageControl()
     {
@@ -94,6 +93,6 @@ public class Shooter : MonoBehaviour
                 enemyAnimator.SetInteger("Transition", 3);
                 GameManager.instance.UpdateScore(1);
                 break;
-        }     
+        }
     }
 }

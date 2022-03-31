@@ -14,12 +14,7 @@ public class Chaser : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out PlayerController playerController))
         {
-            audioSource.PlayOneShot(destroyedSound, 0.2f);
-            enemyAnimator.SetInteger("Transition", 1);
-            GetComponent<Status>().TakeDamage(1);
-            collision.gameObject.GetComponent<Status>().TakeDamage(1);
-            GetComponent<Movement>().speed = 0;
-            Destroy(gameObject, 2f);
+            Damage(collision.gameObject);
         }
     }
 
@@ -27,23 +22,34 @@ public class Chaser : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out CannonBall cannonBall))
         {
-            audioSource.PlayOneShot(destroyedSound, 0.2f);
-            enemyAnimator.SetInteger("Transition", 1);
-            Destroy(cannonBall.gameObject);
-            Destroy(this.gameObject, 2f);
-            GameManager.instance.UpdateScore(1);
-            GetComponent<Movement>().speed = 0;
+            Die(cannonBall.gameObject);
         }
 
         if (collision.gameObject.TryGetComponent(out TripleBall tripleBall))
         {
-            audioSource.PlayOneShot(destroyedSound, 0.2f);
-            enemyAnimator.SetInteger("Transition", 1);
-            Destroy(tripleBall.gameObject);
-            Destroy(this.gameObject, 2f);
-            GameManager.instance.UpdateScore(1);
-            GetComponent<Movement>().speed = 0;
+            Die(tripleBall.gameObject);
         }
     }
+
+    private void Die(GameObject obj)
+    {
+        audioSource.PlayOneShot(destroyedSound, 0.2f);
+        enemyAnimator.SetInteger("Transition", 1);
+        Destroy(obj.gameObject);
+        Destroy(this.gameObject, 0.5f);
+        GameManager.instance.UpdateScore(1);
+        GetComponent<Patrol>().speed = 0;
+    }
+
+    private void Damage(GameObject obj)
+    {
+        audioSource.PlayOneShot(destroyedSound, 0.2f);
+        enemyAnimator.SetInteger("Transition", 1);
+        GetComponent<Status>().TakeDamage(1);
+        obj.gameObject.GetComponent<Status>().TakeDamage(1);
+        GetComponent<Patrol>().speed = 0;
+        Destroy(this.gameObject, 0.5f);
+    }
+    
 }
 
