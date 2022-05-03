@@ -2854,7 +2854,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.526, y: -4.888482, z: -10}
+  m_LocalPosition: {x: -10.57528, y: -3.7510934, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1836882112}
@@ -11378,8 +11378,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 80.1, y: 260.3}
-  m_SizeDelta: {x: 135.3259, y: 50}
+  m_AnchoredPosition: {x: 74.4, y: 260.3}
+  m_SizeDelta: {x: 108.6609, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &881673003
 MonoBehaviour:
@@ -11436,7 +11436,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -35611,6 +35611,53 @@ MonoBehaviour:
   m_Area: 0
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!1 &1261519300
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1261519302}
+  - component: {fileID: 1261519301}
+  m_Layer: 0
+  m_Name: ObjectPooler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1261519301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261519300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c802ff237fcad3d49b45ec0608fbaa15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - tag: CannonBall
+    prefab: {fileID: 2683546297397998248, guid: 05168e7b75e886a4a8738fca5e3eb8c8, type: 3}
+    size: 10
+--- !u!4 &1261519302
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261519300}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1270721659
 GameObject:
   m_ObjectHideFlags: 0
@@ -39936,8 +39983,8 @@ MonoBehaviour:
   m_DeadZoneHeight: 0
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
-  m_SoftZoneWidth: 0.1
-  m_SoftZoneHeight: 0.3
+  m_SoftZoneWidth: 2
+  m_SoftZoneHeight: 1.05
   m_BiasX: 0
   m_BiasY: 0
   m_CenterOnActivate: 1
@@ -40035,8 +40082,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 48.302353, y: 260.30005}
-  m_SizeDelta: {x: 300.583, y: 50}
+  m_AnchoredPosition: {x: 29.365, y: 260.30005}
+  m_SizeDelta: {x: 184.0878, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1723704459
 MonoBehaviour:
@@ -40234,7 +40281,7 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 0}
+  m_LookAt: {fileID: 117953679}
   m_Follow: {fileID: 117953679}
   m_Lens:
     FieldOfView: 60
@@ -40259,7 +40306,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1852383885}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.57528, y: -7.081094, z: -10}
+  m_LocalPosition: {x: -10.57528, y: -3.7510934, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1715348394}
@@ -41345,7 +41392,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 465120246371590557, guid: e6a3640f754f0754d8a7630ed2b261c3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.03
+      value: -2.7
       objectReference: {fileID: 0}
     - target: {fileID: 465120246371590557, guid: e6a3640f754f0754d8a7630ed2b261c3, type: 3}
       propertyPath: m_LocalPosition.z

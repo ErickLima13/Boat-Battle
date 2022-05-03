@@ -33,14 +33,13 @@ public class Shooter : MonoBehaviour
 
     void Update()
     {
+        DamageControl();
+
         if (GetComponent<Status>().currentHealth != 0)
         {
             ShootingTime();
         }
-        else
-        {
-            DestroyBoat();
-        }
+       
     }
 
     void ShootingTime()
@@ -55,27 +54,34 @@ public class Shooter : MonoBehaviour
     void Shoot()
     {
         audioSource.PlayOneShot(sfxSounds[0], 0.2f);
-        Instantiate(ballPrefab, firePoint.transform.position, firePoint.transform.rotation);
+
+        ObjectPooler.Instance.SpawnFromPool("CannonBall", firePoint.transform.position, firePoint.transform.rotation);
+
+
+        //Instantiate(ballPrefab, firePoint.transform.position, firePoint.transform.rotation);
     }
 
-    public void DestroyBoat()
+    public void DestroyBoat() //tirar do updtade somando varias vezes
     {
         patrol.speed = 0;
         Destroy(gameObject, 0.5f);
         fireEffects.SetActive(false);
+        GameManager.instance.UpdateScore(1);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent(out CannonBall cannonBall))
         {
-            DamageControl();
-            Destroy(cannonBall.gameObject);
+            
+
+            //Destroy(cannonBall.gameObject);
+
+            ObjectPooler.Instance.ReturnToPool("CannonBall", cannonBall.gameObject);
         }
 
         if (collision.gameObject.TryGetComponent(out TripleBall tripleBall))
         {
-            DamageControl();
             Destroy(tripleBall.gameObject);
         }
     }
@@ -94,7 +100,7 @@ public class Shooter : MonoBehaviour
             case 0:
                 audioSource.PlayOneShot(sfxSounds[1], 0.2f);
                 enemyAnimator.SetInteger("Transition", 3);
-                GameManager.instance.UpdateScore(1);
+                DestroyBoat();
                 break;
         }
     }

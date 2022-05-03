@@ -78,7 +78,8 @@ public class PlayerController : MonoBehaviour
 
     void Shoot()
     {
-        Instantiate(ballPrefab, firePoint.transform.position, firePoint.transform.rotation);
+        ObjectPooler.Instance.SpawnFromPoolWithReturn("CannonBall", firePoint.transform.position, firePoint.transform.rotation);
+        //Instantiate(ballPrefab, firePoint.transform.position, firePoint.transform.rotation);
     }
 
     IEnumerator AttackSpecial()

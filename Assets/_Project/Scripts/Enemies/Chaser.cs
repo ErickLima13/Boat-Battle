@@ -35,7 +35,10 @@ public class Chaser : MonoBehaviour
     {
         audioSource.PlayOneShot(destroyedSound, 0.2f);
         enemyAnimator.SetInteger("Transition", 1);
-        Destroy(obj.gameObject);
+
+        ObjectPooler.Instance.ReturnToPool("CannonBall", obj);
+
+        //Destroy(obj.gameObject);
         Destroy(this.gameObject, 0.5f);
         GameManager.instance.UpdateScore(1);
         GetComponent<Patrol>().speed = 0;
