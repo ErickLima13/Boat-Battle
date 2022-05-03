@@ -436,13 +436,12 @@ GameObject:
   - component: {fileID: 6104950284754122605}
   - component: {fileID: 6104950284754122607}
   - component: {fileID: 8605229429880121792}
-  - component: {fileID: -209388857286623899}
   - component: {fileID: -6963140087924994038}
   - component: {fileID: 1998765018}
   - component: {fileID: 880889733}
   - component: {fileID: 880889734}
   m_Layer: 0
-  m_Name: Enemy 1
+  m_Name: Shooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -591,27 +590,6 @@ MonoBehaviour:
   currentHealth: 0
   healthBar: {fileID: 1137549720}
   healthBarObject: {fileID: 282546468}
---- !u!50 &-209388857286623899
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6104950284754122601}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!82 &-6963140087924994038
 AudioSource:
   m_ObjectHideFlags: 0
@@ -731,7 +709,7 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   index: 0
   distanceHit: 3.5
-  distanceView: 10
+  distanceView: 5
   firePoint: {fileID: 6104950283771040951}
   playerLayer:
     serializedVersion: 2

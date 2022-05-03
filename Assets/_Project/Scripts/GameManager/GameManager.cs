@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     public int score = 0;
 
     public float time;
-    public float spawnRate = 3;
+    public float spawnRate = 7;
 
     public int multiplier = 1;
 

@@ -22,7 +22,9 @@ public class PlayerController : MonoBehaviour
     public bool isLoadingTripleCannon = true;    
 
     [SerializeField] private Animator playerAnimator;
+
     [SerializeField] private Status status;
+
     [SerializeField] private AudioSource AudioSource;
 
     void Update()
@@ -91,10 +93,15 @@ public class PlayerController : MonoBehaviour
 
     void TripleShoot()
     {
-        tripleEffects.SetActive(true);        
-        Instantiate(tripleBallPrefab, triplePoints[0].transform.position, triplePoints[0].transform.rotation);
-        Instantiate(tripleBallPrefab, triplePoints[1].transform.position, triplePoints[1].transform.rotation);
-        Instantiate(tripleBallPrefab, triplePoints[2].transform.position, triplePoints[2].transform.rotation);      
+        tripleEffects.SetActive(true);       
+        
+        for(int count = 0; count < 3; count++)
+        {
+            Instantiate(
+                tripleBallPrefab,
+                triplePoints[count].transform.position,
+                triplePoints[count].transform.rotation);
+        }  
     }  
 
     private void DamageControl()

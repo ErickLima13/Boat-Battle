@@ -210,13 +210,12 @@ GameObject:
   - component: {fileID: 3800075803021977475}
   - component: {fileID: 3800075803021977474}
   - component: {fileID: 396008234}
-  - component: {fileID: 8906455458885657081}
   - component: {fileID: 8849028885241523595}
   - component: {fileID: 6141267966768164330}
   - component: {fileID: 684945573}
   - component: {fileID: 684945574}
   m_Layer: 0
-  m_Name: Enemy 2
+  m_Name: Chaser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -354,27 +353,6 @@ MonoBehaviour:
   currentHealth: 0
   healthBar: {fileID: 174982353}
   healthBarObject: {fileID: 1184987126}
---- !u!50 &8906455458885657081
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3800075803021977496}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!82 &8849028885241523595
 AudioSource:
   m_ObjectHideFlags: 0

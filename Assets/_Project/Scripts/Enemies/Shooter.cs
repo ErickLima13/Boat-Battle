@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
-    public GameObject firePoint;
-    public GameObject ballPrefab;
-    public GameObject fireEffects;
+    [SerializeField] private GameObject firePoint;
+    [SerializeField] private GameObject ballPrefab;
+    [SerializeField] private GameObject fireEffects;
 
-    public float fireRate;
+    [SerializeField] private float fireRate;
     private float nextShot;
 
     public List<AudioClip> sfxSounds;
 
     [SerializeField] private Animator enemyAnimator;
+
     [SerializeField] private AudioSource audioSource;
+
     [SerializeField] private Status status;
+
     [SerializeField] private Patrol patrol;
 
     public void Initialization()

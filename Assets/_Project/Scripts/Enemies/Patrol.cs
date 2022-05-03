@@ -29,7 +29,7 @@ public class Patrol : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
-        agent.speed = speed;
+        
 
         point = GameObject.FindGameObjectsWithTag("Patrol");
         index = Random.Range(0, point.Length);
@@ -39,13 +39,11 @@ public class Patrol : MonoBehaviour
         
     }
 
-    // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         Initialization();
     }
 
-    // Update is called once per frame
     void Update()
     {
         //if (GameManager.instance.isGameActive)
@@ -62,6 +60,7 @@ public class Patrol : MonoBehaviour
         agent.speed = speed;
 
         Collider2D hit = Physics2D.OverlapCircle(firePoint.position, distanceHit,playerLayer);
+
         Collider2D view = Physics2D.OverlapCircle(transform.position, distanceView,playerLayer);
 
         if (view != null)
@@ -72,23 +71,22 @@ public class Patrol : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * speed);
 
             agent.SetDestination(view.transform.position);
-            agent.speed = 2f;
+            speed = 2f;
         }
         else
         {
             RotateTheEnemy();
             MoveToWayPoint();
-
         }
 
         if (hit != null)
         {
-            agent.speed = 0;
+            speed = 0;
             isPlayer = true;
         }
         else
         {
-            agent.speed = 3f;
+            speed = 3f;
             isPlayer = false;
         }
     }
@@ -124,7 +122,6 @@ public class Patrol : MonoBehaviour
             float distance = Vector2.Distance(point[index].transform.position, transform.position);
             agent.destination = point[index].transform.position;
 
-
             if (distance <= 1.5f)
             {
                 //parte para o proximo ponto
@@ -136,11 +133,8 @@ public class Patrol : MonoBehaviour
                     index = Random.Range(0, point.Length);
                 }
             }
-
-           
         }
     }
-
 
     private void RotateTheEnemy()
     {

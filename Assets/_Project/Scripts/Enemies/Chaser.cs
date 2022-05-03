@@ -48,7 +48,7 @@ public class Chaser : MonoBehaviour
         GetComponent<Status>().TakeDamage(1);
         obj.gameObject.GetComponent<Status>().TakeDamage(1);
         GetComponent<Patrol>().speed = 0;
-        Destroy(this.gameObject, 0.5f);
+        Destroy(this.gameObject, 0.4f);
     }
     
 }
