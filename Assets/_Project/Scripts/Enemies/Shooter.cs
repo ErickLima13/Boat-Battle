@@ -61,11 +61,15 @@ public class Shooter : MonoBehaviour
         //Instantiate(ballPrefab, firePoint.transform.position, firePoint.transform.rotation);
     }
 
-    public void DestroyBoat() //tirar do updtade somando varias vezes
+    public void DestroyBoat() 
     {
         patrol.speed = 0;
         Destroy(gameObject, 0.5f);
         fireEffects.SetActive(false);
+    }
+
+    public void AddScore()
+    {
         GameManager.instance.UpdateScore(1);
     }
 

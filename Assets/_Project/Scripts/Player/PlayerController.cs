@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
         {
             Movement();            
             ShootingTime();
-            DamageControl();            
+            DamageControl();
         }       
     }
 

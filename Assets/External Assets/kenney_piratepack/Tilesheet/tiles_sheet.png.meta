@@ -312,6 +312,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -2416,6 +2417,103 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      tiles_sheet_9: -792709925424889710
+      tiles_sheet_66: 5513974437047757735
+      tiles_sheet_77: -3290509594332596589
+      tiles_sheet_28: -527881887305874758
+      tiles_sheet_80: -1661318736356845642
+      tiles_sheet_25: 7127269844731051592
+      tiles_sheet_94: -212932761557561337
+      tiles_sheet_41: -1303243856690508233
+      tiles_sheet_51: 5961221637912229448
+      tiles_sheet_12: 1667885412850359853
+      tiles_sheet_78: 7074737003846358123
+      tiles_sheet_69: 3856058173817321190
+      tiles_sheet_74: -936421164647362132
+      tiles_sheet_39: -218956006180893731
+      tiles_sheet_52: -2256590346607552661
+      tiles_sheet_4: -4273197323387495908
+      tiles_sheet_38: 5719186875032087977
+      tiles_sheet_27: -2059907170482822966
+      tiles_sheet_59: -7559082890687389007
+      tiles_sheet_70: -3807703132750259363
+      tiles_sheet_16: 6839625875301962939
+      tiles_sheet_32: -4148023517647824561
+      tiles_sheet_63: 6331247380764257840
+      tiles_sheet_72: 6528376251529302433
+      tiles_sheet_92: -155827431649451090
+      tiles_sheet_7: 949169385037664827
+      tiles_sheet_46: 1730460704430775631
+      tiles_sheet_2: 8328995142626445782
+      tiles_sheet_83: 2868314083710166221
+      tiles_sheet_84: -593820531519616921
+      tiles_sheet_6: -1237026579980307730
+      tiles_sheet_79: -3874002746662675967
+      tiles_sheet_33: 8888736946765115825
+      tiles_sheet_11: 3388612332658881772
+      tiles_sheet_21: -3760761869057525940
+      tiles_sheet_23: 645317935959796735
+      tiles_sheet_42: 6140342375543538002
+      tiles_sheet_54: 2833927840700558271
+      tiles_sheet_58: 5436144052191429313
+      tiles_sheet_8: -5325004342002272030
+      tiles_sheet_30: 2663426788742894133
+      tiles_sheet_62: 6927033211165965929
+      tiles_sheet_44: -8280384669371718260
+      tiles_sheet_95: -2630823386366815067
+      tiles_sheet_56: 2587298270231932351
+      tiles_sheet_68: -2958616930455527774
+      tiles_sheet_43: 568043354614469340
+      tiles_sheet_22: -7898227927673474206
+      tiles_sheet_37: -6340362282617704041
+      tiles_sheet_71: 1260226160681903510
+      tiles_sheet_57: 1440061324226304453
+      tiles_sheet_82: 4810914186616373497
+      tiles_sheet_60: 2486149746797221045
+      tiles_sheet_64: -3811215821013483616
+      tiles_sheet_13: 2461891440587676588
+      tiles_sheet_40: 4835735342730968992
+      tiles_sheet_65: 5462556090498575575
+      tiles_sheet_50: 4891709731142291570
+      tiles_sheet_24: 8854616123325317408
+      tiles_sheet_81: -5938406963249871985
+      tiles_sheet_85: -9011143268756003805
+      tiles_sheet_86: -7988871913508808796
+      tiles_sheet_49: 2569800193478404677
+      tiles_sheet_89: -8754782186903632395
+      tiles_sheet_35: -1324302519608704651
+      tiles_sheet_34: 3622326912451970930
+      tiles_sheet_1: -3179138849042035142
+      tiles_sheet_91: 8029942514166707084
+      tiles_sheet_53: -8042514837783509942
+      tiles_sheet_55: -6914034949540798639
+      tiles_sheet_10: -4215191528904792185
+      tiles_sheet_14: -1361175420938449921
+      tiles_sheet_26: 4768465246125076236
+      tiles_sheet_19: -444489773512192833
+      tiles_sheet_76: 3203300992690996361
+      tiles_sheet_67: -5370308898651227604
+      tiles_sheet_5: 6549089429378878205
+      tiles_sheet_75: -5512360673997895200
+      tiles_sheet_47: 7720145825481527672
+      tiles_sheet_0: 7158607818749665473
+      tiles_sheet_15: -5981918800986566184
+      tiles_sheet_48: 1808810460192557333
+      tiles_sheet_18: -4455403130098909967
+      tiles_sheet_20: -3088362913104005876
+      tiles_sheet_29: 197342193685935100
+      tiles_sheet_3: 8271240600530994065
+      tiles_sheet_36: 7966468088745286300
+      tiles_sheet_73: 5435422690976746169
+      tiles_sheet_31: -5175618037173503190
+      tiles_sheet_87: 663200130436442353
+      tiles_sheet_93: -5053420312902316420
+      tiles_sheet_61: -7404643703067520288
+      tiles_sheet_88: -8321276671295331460
+      tiles_sheet_90: 610534467574686920
+      tiles_sheet_45: 8753650164146569674
+      tiles_sheet_17: 8854755523312143154
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
