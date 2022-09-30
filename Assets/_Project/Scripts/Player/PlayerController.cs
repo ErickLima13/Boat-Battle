@@ -15,7 +15,9 @@ public class PlayerController : MonoBehaviour
     public GameObject tripleBallPrefab;
     public GameObject fireEffects;
     public GameObject tripleEffects;
+    public GameObject crossHair;
     public List<GameObject> triplePoints;
+    
 
     public List<AudioClip> sfxSounds;
     
@@ -27,16 +29,23 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private AudioSource AudioSource;
 
+    private void Start()
+    {
+        
+    }
+
     void Update()
     {
         StartGame();
 
         if (GameManager.instance.isGameActive)
         {
-            Movement();            
+            Movement();
             ShootingTime();
             DamageControl();
-        }       
+        }
+
+        //Movement();
     }
 
     private void Movement()
@@ -44,8 +53,18 @@ public class PlayerController : MonoBehaviour
         float horizontalInputs = Input.GetAxisRaw("Horizontal");
         float verticalInputs = Input.GetAxisRaw("Vertical");
 
-        transform.Translate(Vector3.up * speed * -verticalInputs * Time.deltaTime);
-        transform.Rotate(Vector3.forward, Time.deltaTime * turnSpeed * horizontalInputs);
+        transform.Translate(speed * Time.deltaTime * verticalInputs * Vector3.up);
+        //transform.Rotate(Vector3.forward, Time.deltaTime * turnSpeed * horizontalInputs);
+
+        Vector3 mousePos = Input.mousePosition;
+        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+
+        crossHair.transform.position = new(mousePos.x, mousePos.y, transform.position.z);
+
+        Vector2 direction = new(mousePos.x - transform.position.x, mousePos.y - transform.position.y);
+
+        transform.up = direction;
+        
     }
 
     private void StartGame()
@@ -53,6 +72,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             GameManager.instance.StartGame();
+            Cursor.visible = false;
             return;
         }
     }
