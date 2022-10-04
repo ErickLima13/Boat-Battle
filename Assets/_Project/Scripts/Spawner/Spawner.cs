@@ -36,7 +36,19 @@ public class Spawner : MonoBehaviour
             nextSpawn = Time.time + spawnRate;
             int index = Random.Range(0, enemiesPrefabs.Count);
             int indexSpawnPoints = Random.Range(0, spawnPoints.Count);
-            Instantiate(enemiesPrefabs[index],spawnPoints[indexSpawnPoints].transform.position ,enemiesPrefabs[index].transform.rotation);
+
+            if(Random.Range(0,100) < 50)
+            {
+                ObjectPooler.Instance.SpawnFromPoolWithReturn("Shooter", spawnPoints[indexSpawnPoints].transform.position, enemiesPrefabs[index].transform.rotation); 
+            }
+            else
+            {
+                
+                ObjectPooler.Instance.SpawnFromPoolWithReturn("Patrol", spawnPoints[indexSpawnPoints].transform.position, enemiesPrefabs[index].transform.rotation);
+            }
+
+            
+            //Instantiate(enemiesPrefabs[index],spawnPoints[indexSpawnPoints].transform.position ,enemiesPrefabs[index].transform.rotation);
         }
     }
 

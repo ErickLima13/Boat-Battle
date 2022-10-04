@@ -39,9 +39,10 @@ public class Chaser : MonoBehaviour
         ObjectPooler.Instance.ReturnToPool("CannonBall", obj);
 
         //Destroy(obj.gameObject);
-        Destroy(this.gameObject, 0.5f);
+        //Destroy(gameObject, 1.5f);
         GameManager.instance.UpdateScore(1);
         GetComponent<Patrol>().speed = 0;
+        StartCoroutine(ObjectPooler.Instance.ReturnToPoolAfterSeconds("Shooter", gameObject, 1.5f));
     }
 
     private void Damage(GameObject obj)
@@ -49,9 +50,10 @@ public class Chaser : MonoBehaviour
         audioSource.PlayOneShot(destroyedSound, 0.2f);
         enemyAnimator.SetInteger("Transition", 1);
         GetComponent<Status>().TakeDamage(1);
-        obj.gameObject.GetComponent<Status>().TakeDamage(1);
+        obj.GetComponent<Status>().TakeDamage(1);
         GetComponent<Patrol>().speed = 0;
-        Destroy(this.gameObject, 0.4f);
+        //Destroy(gameObject, 1.5f);
+        StartCoroutine(ObjectPooler.Instance.ReturnToPoolAfterSeconds("Shooter", gameObject, 1.5f));
     }
     
 }

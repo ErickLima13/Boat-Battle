@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 54238792}
   m_Layer: 0
-  m_Name: Ui
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35694,7 +35694,13 @@ MonoBehaviour:
   pools:
   - tag: CannonBall
     prefab: {fileID: 2683546297397998248, guid: 05168e7b75e886a4a8738fca5e3eb8c8, type: 3}
-    size: 10
+    size: 15
+  - tag: Patrol
+    prefab: {fileID: 3800075803021977496, guid: e838a79ca7942794a83f63725f906a85, type: 3}
+    size: 15
+  - tag: Shooter
+    prefab: {fileID: 6104950284754122601, guid: 7cbde2fa409d4264d9ce5fc4c9f4dc2f, type: 3}
+    size: 15
 --- !u!4 &1261519302
 Transform:
   m_ObjectHideFlags: 0
@@ -35862,8 +35868,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Controls :\nTo Move : W/S, \nTo Rotate : A/D,\nFrontal Single Shoot :
-    left mouse button,\nSide Triple Shoot : right mouse button.\nPause Game: Press
+  m_text: "Controls :\nTo Move : W/S/A/D, \nTo Rotate : Mouse,\nFrontal Single Shoot
+    : left mouse button,\nSide Triple Shoot : right mouse button.\nPause Game: Press
     Escape Button.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -36199,7 +36205,7 @@ GameObject:
   - component: {fileID: 1464138302}
   - component: {fileID: 1464138303}
   m_Layer: 0
-  m_Name: UiController
+  m_Name: UIController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

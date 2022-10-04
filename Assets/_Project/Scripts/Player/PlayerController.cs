@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
         float verticalInputs = Input.GetAxisRaw("Vertical");
 
         transform.Translate(speed * Time.deltaTime * verticalInputs * Vector3.up);
+        transform.Translate(speed * Time.deltaTime * horizontalInputs * Vector3.left);
         //transform.Rotate(Vector3.forward, Time.deltaTime * turnSpeed * horizontalInputs);
 
         Vector3 mousePos = Input.mousePosition;
@@ -85,14 +86,14 @@ public class PlayerController : MonoBehaviour
             {
                 Shoot();
                 nextShot = Time.time + 1f / fireRate;
-                AudioSource.PlayOneShot(sfxSounds[0],0.2f);
+                AudioSource.PlayOneShot(sfxSounds[0]);
             }
         }
 
         if (Input.GetButtonDown("Fire2") && isLoadingTripleCannon)
         {
             StartCoroutine(AttackSpecial());
-            AudioSource.PlayOneShot(sfxSounds[1],0.2f);
+            AudioSource.PlayOneShot(sfxSounds[1]);
         }
     }
 

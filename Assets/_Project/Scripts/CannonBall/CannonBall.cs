@@ -28,7 +28,7 @@ public class CannonBall : MonoBehaviour
 
     private void ShootBall()
     {
-        transform.Translate(Vector2.down * speed * Time.deltaTime);        
+        transform.Translate(speed * Time.deltaTime * Vector2.down);        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

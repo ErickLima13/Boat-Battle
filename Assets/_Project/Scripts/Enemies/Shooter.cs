@@ -11,7 +11,7 @@ public class Shooter : MonoBehaviour
     [SerializeField] private float fireRate;
     private float nextShot;
 
-    public List<AudioClip> sfxSounds;
+    [SerializeField] private List<AudioClip> sfxSounds;
 
     [SerializeField] private Animator enemyAnimator;
 
@@ -31,7 +31,7 @@ public class Shooter : MonoBehaviour
         Initialization();
     }
 
-    void Update()
+    private void Update()
     {
         DamageControl();
 
@@ -42,7 +42,7 @@ public class Shooter : MonoBehaviour
        
     }
 
-    void ShootingTime()
+    private void ShootingTime()
     {
         if (Time.time >= nextShot && patrol.isPlayer && GameManager.instance.isGameActive)
         {
@@ -51,9 +51,9 @@ public class Shooter : MonoBehaviour
         }
     }
 
-    void Shoot()
+    private void Shoot()
     {
-        audioSource.PlayOneShot(sfxSounds[0], 0.2f);
+        audioSource.PlayOneShot(sfxSounds[0]);
 
         ObjectPooler.Instance.SpawnFromPool("CannonBall", firePoint.transform.position, firePoint.transform.rotation);
 
@@ -61,16 +61,20 @@ public class Shooter : MonoBehaviour
         //Instantiate(ballPrefab, firePoint.transform.position, firePoint.transform.rotation);
     }
 
-    public void DestroyBoat() 
+    private void DestroyBoat() 
     {
         patrol.speed = 0;
-        Destroy(gameObject, 0.5f);
+        //Destroy(gameObject, 1.5f);
+        StartCoroutine(ObjectPooler.Instance.ReturnToPoolAfterSeconds("Shooter", gameObject, 1.5f));
         fireEffects.SetActive(false);
+        
     }
 
     public void AddScore()
     {
+        audioSource.PlayOneShot(sfxSounds[1], 0.2f);
         GameManager.instance.UpdateScore(1);
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -78,7 +82,6 @@ public class Shooter : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out CannonBall cannonBall))
         {
             
-
             //Destroy(cannonBall.gameObject);
 
             ObjectPooler.Instance.ReturnToPool("CannonBall", cannonBall.gameObject);
@@ -102,7 +105,7 @@ public class Shooter : MonoBehaviour
                 fireEffects.SetActive(true);
                 break;
             case 0:
-                audioSource.PlayOneShot(sfxSounds[1], 0.2f);
+                
                 enemyAnimator.SetInteger("Transition", 3);
                 DestroyBoat();
                 break;
