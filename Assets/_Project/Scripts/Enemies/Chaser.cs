@@ -42,7 +42,7 @@ public class Chaser : MonoBehaviour
         //Destroy(gameObject, 1.5f);
         GameManager.instance.UpdateScore(1);
         GetComponent<Patrol>().speed = 0;
-        StartCoroutine(ObjectPooler.Instance.ReturnToPoolAfterSeconds("Shooter", gameObject, 1.5f));
+        StartCoroutine(ObjectPooler.Instance.ReturnToPoolAfterSeconds("Shooter", gameObject, 1f));
     }
 
     private void Damage(GameObject obj)
@@ -53,8 +53,13 @@ public class Chaser : MonoBehaviour
         obj.GetComponent<Status>().TakeDamage(1);
         GetComponent<Patrol>().speed = 0;
         //Destroy(gameObject, 1.5f);
-        StartCoroutine(ObjectPooler.Instance.ReturnToPoolAfterSeconds("Shooter", gameObject, 1.5f));
+        StartCoroutine(ObjectPooler.Instance.ReturnToPoolAfterSeconds("Shooter", gameObject, 1f));
     }
-    
+
+    private void OnEnable()
+    {
+        GetComponent<Patrol>().speed = 5;
+    }
+
 }
 

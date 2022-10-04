@@ -65,7 +65,7 @@ public class Shooter : MonoBehaviour
     {
         patrol.speed = 0;
         //Destroy(gameObject, 1.5f);
-        StartCoroutine(ObjectPooler.Instance.ReturnToPoolAfterSeconds("Shooter", gameObject, 1.5f));
+        StartCoroutine(ObjectPooler.Instance.ReturnToPoolAfterSeconds("Shooter", gameObject, 1f));
         fireEffects.SetActive(false);
         
     }
@@ -110,5 +110,10 @@ public class Shooter : MonoBehaviour
                 DestroyBoat();
                 break;
         }
+    }
+
+    private void OnEnable()
+    {
+        GetComponent<Patrol>().speed = 3;
     }
 }

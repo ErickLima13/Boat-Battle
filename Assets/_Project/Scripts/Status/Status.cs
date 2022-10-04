@@ -35,4 +35,5 @@ public class Status : MonoBehaviour
         healthBarScale.x = healthPercent * currentHealth;
         healthBar.localScale = healthBarScale;        
     }
+
 }

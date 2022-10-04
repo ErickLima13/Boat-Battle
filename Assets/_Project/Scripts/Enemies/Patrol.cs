@@ -143,4 +143,9 @@ public class Patrol : MonoBehaviour
         Quaternion rotation = transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * speed);
     }
+
+    private void OnEnable()
+    {
+        GetComponent<Animator>().SetInteger("Transition", 0);
+    }
 }

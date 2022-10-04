@@ -35697,10 +35697,10 @@ MonoBehaviour:
     size: 15
   - tag: Patrol
     prefab: {fileID: 3800075803021977496, guid: e838a79ca7942794a83f63725f906a85, type: 3}
-    size: 15
+    size: 3
   - tag: Shooter
     prefab: {fileID: 6104950284754122601, guid: 7cbde2fa409d4264d9ce5fc4c9f4dc2f, type: 3}
-    size: 15
+    size: 3
 --- !u!4 &1261519302
 Transform:
   m_ObjectHideFlags: 0
