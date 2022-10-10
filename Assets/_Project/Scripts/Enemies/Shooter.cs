@@ -7,6 +7,7 @@ public class Shooter : MonoBehaviour
     [SerializeField] private GameObject firePoint;
     [SerializeField] private GameObject ballPrefab;
     [SerializeField] private GameObject fireEffects;
+    [SerializeField] private GameObject cannon;
 
     [SerializeField] private float fireRate;
     private float nextShot;
@@ -72,6 +73,9 @@ public class Shooter : MonoBehaviour
 
     public void AddScore()
     {
+        GetComponent<CapsuleCollider2D>().enabled = false;
+        GetComponent<Status>().healthBarObject.SetActive(false);
+        cannon.SetActive(false);
         audioSource.PlayOneShot(sfxSounds[1], 0.2f);
         GameManager.instance.UpdateScore(1);
         
@@ -115,5 +119,6 @@ public class Shooter : MonoBehaviour
     private void OnEnable()
     {
         GetComponent<Patrol>().speed = 3;
+        cannon.SetActive(true);
     }
 }

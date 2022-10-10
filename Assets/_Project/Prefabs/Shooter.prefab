@@ -106,7 +106,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 6
   m_Sprite: {fileID: 21300000, guid: de71d864990ae31408834182b494f9f9, type: 3}
   m_Color: {r: 0.16862746, g: 1, b: 0.2784314, a: 1}
   m_FlipX: 0
@@ -190,7 +190,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: de71d864990ae31408834182b494f9f9, type: 3}
   m_Color: {r: 1, g: 0.20784314, b: 0.16470589, a: 1}
   m_FlipX: 0
@@ -561,6 +561,7 @@ MonoBehaviour:
   firePoint: {fileID: 6104950283771040948}
   ballPrefab: {fileID: 2683546297397998248, guid: 05168e7b75e886a4a8738fca5e3eb8c8, type: 3}
   fireEffects: {fileID: 6104950283797211520}
+  cannon: {fileID: 1335025214}
   fireRate: 0.5
   sfxSounds:
   - {fileID: 8300000, guid: b3c66f3fd72c73a41afaf00ee4ac19e5, type: 3}
@@ -713,7 +714,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42c95342b819ed046aca1aeeab25b945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: eabd508c5065ceb47a561b8637cd59d9, type: 3}
   point:
   - {fileID: 0}
   - {fileID: 0}
@@ -724,8 +724,8 @@ MonoBehaviour:
   speed: 3
   targetPosition: {x: 0, y: 0, z: 0}
   index: 0
-  distanceHit: 4
-  distanceView: 6
+  distanceHit: 6
+  distanceView: 8
   firePoint: {fileID: 6104950283771040951}
   playerLayer:
     serializedVersion: 2
@@ -925,7 +925,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: de71d864990ae31408834182b494f9f9, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0

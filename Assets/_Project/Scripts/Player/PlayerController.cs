@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -53,19 +54,16 @@ public class PlayerController : MonoBehaviour
         float horizontalInputs = Input.GetAxisRaw("Horizontal");
         float verticalInputs = Input.GetAxisRaw("Vertical");
 
-        transform.Translate(speed * Time.deltaTime * verticalInputs * Vector3.up);
-        transform.Translate(speed * Time.deltaTime * horizontalInputs * Vector3.left);
-        //transform.Rotate(Vector3.forward, Time.deltaTime * turnSpeed * horizontalInputs);
+        transform.Translate(speed * Time.deltaTime * verticalInputs * Vector3.up,Space.World);
+        transform.Translate(speed * Time.deltaTime * horizontalInputs * Vector3.right,Space.World);
 
         Vector3 mousePos = Input.mousePosition;
-        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+        mousePos = Camera.main.ScreenToWorldPoint(mousePos );
 
         crossHair.transform.position = new(mousePos.x, mousePos.y, transform.position.z);
-
         Vector2 direction = new(mousePos.x - transform.position.x, mousePos.y - transform.position.y);
-
         transform.up = direction;
-        
+
     }
 
     private void StartGame()

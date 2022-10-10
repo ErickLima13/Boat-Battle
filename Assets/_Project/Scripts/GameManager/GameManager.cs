@@ -129,6 +129,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         isGameActive = false;
+        Cursor.visible = true;
         onGameOver?.Invoke();        
     }
 

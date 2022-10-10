@@ -35,11 +35,9 @@ public class Chaser : MonoBehaviour
     {
         audioSource.PlayOneShot(destroyedSound, 0.2f);
         enemyAnimator.SetInteger("Transition", 1);
-
+        GetComponent<CapsuleCollider2D>().enabled = false;
+        GetComponent<Status>().healthBarObject.SetActive(false);
         ObjectPooler.Instance.ReturnToPool("CannonBall", obj);
-
-        //Destroy(obj.gameObject);
-        //Destroy(gameObject, 1.5f);
         GameManager.instance.UpdateScore(1);
         GetComponent<Patrol>().speed = 0;
         StartCoroutine(ObjectPooler.Instance.ReturnToPoolAfterSeconds("Shooter", gameObject, 1f));

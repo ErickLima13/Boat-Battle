@@ -36,4 +36,10 @@ public class Status : MonoBehaviour
         healthBar.localScale = healthBarScale;        
     }
 
+    private void OnEnable()
+    {
+        
+        currentHealth = maxHealth;
+
+    }
 }

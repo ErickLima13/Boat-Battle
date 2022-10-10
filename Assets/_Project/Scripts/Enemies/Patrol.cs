@@ -147,5 +147,8 @@ public class Patrol : MonoBehaviour
     private void OnEnable()
     {
         GetComponent<Animator>().SetInteger("Transition", 0);
+        GetComponent<CapsuleCollider2D>().enabled = true;
+        GetComponent<Status>().healthBarObject.SetActive(true);
+
     }
 }
